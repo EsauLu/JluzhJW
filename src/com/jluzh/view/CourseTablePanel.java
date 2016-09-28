@@ -119,10 +119,11 @@ public class CourseTablePanel extends JPanel{
 			}
 		}
 		for(Course c:m_course_list){
-			String weekNum=c.getTime();
+			String weekNum=c.getWeekNum();
 			if(!judeWeek(weekNum, n)){
 				continue;
 			}
+
 			int x=c.getX();
 			int y=c.getY()%7;
 			m_courses_table[x/2][y].setText(""
@@ -136,6 +137,7 @@ public class CourseTablePanel extends JPanel{
 	
 	private boolean judeWeek(String week,int n) {
 		// TODO Auto-generated method stub
+
 		String pattern="(.*)(\\d+)-(\\d+)(.*)";
 		Pattern p=Pattern.compile(pattern);
 		Matcher m=p.matcher(week);
@@ -152,13 +154,19 @@ public class CourseTablePanel extends JPanel{
 			}
 			
 			res=m.group(4);
-			if(res.contains("周")){
-				return true;
-			}else if(res.contains("单周")&&n%2!=0){
-				return true;
-			}else if(res.contains("双周")&&n%2==0){
-				return true;
+						
+			if(res.contains("单周")){
+				if(n%2==0){
+					return false;
+				}
 			}
+			
+			if(res.contains("双周")){
+				if(n%2!=0){
+					return false;
+				}
+			}
+
 		}
 		return true;
 	}

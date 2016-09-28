@@ -237,7 +237,13 @@ public class MainFream extends JFrame {
 	 * @param courseTable 课表
 	 */
 	public void showCourseTable(CourseTable courseTable) {
-		m_courses_table.setCourseTable(courseTable.getCourses(), 1);
+		try {
+			int n=Integer.parseInt((String)m_week_comb.getSelectedItem());
+			m_courses_table.setCourseTable(courseTable.getCourses(), n);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
