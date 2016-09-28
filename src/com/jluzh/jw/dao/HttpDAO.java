@@ -59,6 +59,14 @@ public interface HttpDAO {
 	public CourseTable getCourseTable(String xnd,String xqd);
 	
 	/**
+	 * 根据学年度和学期获取课表的Json串
+	 * @param xnd 学年度
+	 * @param xqd 学期
+	 * @return 课表Json串
+	 */
+	public String getCourseTableAsJson(String xnd,String xqd);
+	
+	/**
 	 * 获取个人信息
 	 * @param url 查询个人信息的url
 	 * @return 个人信息
@@ -72,3 +80,50 @@ public interface HttpDAO {
 	public String getErrorMessege();
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

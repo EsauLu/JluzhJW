@@ -77,9 +77,6 @@ public class HtmlTools {
 		Matcher m=p.matcher(html);		
 		if(m.find()){
 			res=m.group(1);
-		}else{
-			System.out.println(html);
-			System.out.println("++什么都没有");
 		}
 		return res.trim();
 	}
@@ -177,24 +174,7 @@ public class HtmlTools {
 			}
 			
 		}
-		
-
-//		System.out.println("==================================");
-//		
-//		for(Course c:courses){
-//			System.out.println("-----------------------------");
-//			System.out.println(c.getName());
-//			System.out.println(c.getTeacher());
-//			System.out.println(c.getClassRoom());
-//			System.out.println(c.getTime());
-//			System.out.println(c.getWeekNum());
-//			System.out.println("第"+c.getX()+"节课");
-//			System.out.println("星期"+c.getY());
-//			System.out.println("-----------------------------");
-//		}
-//		
-//		System.out.println("==================================");
-		
+				
 		return courses;
 	}	
 	

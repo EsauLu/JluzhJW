@@ -215,7 +215,6 @@ public class MainFream extends JFrame {
 					try {
 						int n=Integer.parseInt((String)m_week_comb.getSelectedItem());
 						m_courses_table.updateCourseTable(n);
-						System.out.println(":"+n);
 					} catch (NumberFormatException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

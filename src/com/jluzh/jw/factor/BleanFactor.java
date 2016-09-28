@@ -21,7 +21,7 @@ public class BleanFactor {
 		c.setName(info[0]);
 		
 		String[] t=(" "+info[1]).split("\\{");		
-		c.setTime(t[0].trim());//上课时间
+		c.setClassTime(t[0].trim());//上课时间
 		c.setWeekNum(t[1].substring(0, t[1].length()-1));//周数
 
 		c.setTeacher(info[2]);

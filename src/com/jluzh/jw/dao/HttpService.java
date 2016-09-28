@@ -301,6 +301,35 @@ public class HttpService implements HttpDAO {
 		
 		return couresTable;
 	}
+	
+	@Override
+	public String getCourseTableAsJson(String xnd, String xqd) {
+		// TODO Auto-generated method stub
+		
+		CourseTable courseTable=getCourseTable(xnd, xqd);
+		StringBuffer sb=new StringBuffer();
+		
+		sb.append("{");
+		for(Course c:courseTable.getCourses()){
+			sb.append("\n\t{");
+			sb.append("\n\t\t\"name\":\""+c.getName()+"\"");
+			sb.append("\n\t\t\"classRoom\":\""+c.getClassRoom()+"\"");
+			sb.append("\n\t\t\"teacher\":\""+c.getTeacher()+"\"");
+			sb.append("\n\t\t\"classTime\":\""+c.getClassTime()+"\"");
+			sb.append("\n\t\t\"weekNum\":\""+c.getWeekNum()+"\"");
+			sb.append("\n\t\t\"X\":\""+c.getX()+"\"");
+			sb.append("\n\t\t\"Y\":\""+c.getY()+"\"");					
+			sb.append("\n\t}\n");
+		}
+		sb.append("}");
+		
+
+//		System.out.println("===================================");
+//		System.out.println(sb.toString());//==============================================================
+//		System.out.println("===================================");
+		
+		return sb.toString();
+	}
 
 	@Override
 	public PersonalInfo getPersonalInfo(String url) {

@@ -129,7 +129,7 @@ public class CourseTablePanel extends JPanel{
 			m_courses_table[x/2][y].setText(""
 					+ "<html>"
 					+ "<p>"+c.getName()+"</p>"
-					+ "<p>"+c.getTime()+"</p>"
+					+ "<p>"+c.getClassTime()+"</p>"
 					+ "<p>"+c.getTeacher()+"</p>"
 					+ "</html>");
 		}

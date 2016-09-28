@@ -91,16 +91,7 @@ public class Controller {
 	 */
 	public void qureyCourseTable(String xnd,String xqd){
 		CourseTable ct=mHttpDAO.getCourseTable(xnd,xqd);
-//		System.out.println("========================================");
-//		for(Course c:ct.getCourses()){
-//			System.out.println("-----------------------");
-//			System.out.println(c.getName());
-//			System.out.println(c.getClassRoom());
-//			System.out.println(c.getTeacher());
-//			System.out.println(c.getTime());
-//			System.out.println("-----------------------");
-//		}
-//		System.out.println("========================================");
+//		System.out.println(mHttpDAO.getCourseTableAsJson("2014-2015", "1"));
 		mMainFream.showCourseTable(ct);
 	}
 	   

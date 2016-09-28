@@ -25,7 +25,7 @@ public class Course {
 	/**
 	 * 上课时间
 	 */
-	private String time;
+	private String classTime;
 	
 	/**
 	 * 周数
@@ -128,16 +128,17 @@ public class Course {
 	 * 获取上课时间
 	 * @return 返回上课时间
 	 */
-	public String getTime() {
-		return time;
+	public String getClassTime() {
+		return classTime;
 	}
 
 	/**
 	 * 设置上课时间
 	 * @param time 上课时间
 	 */
-	public void setTime(String time) {
-		this.time = time;
+	public void setClassTime(String time) {
+		this.classTime = time;
+		
 	}
 
 	/**
