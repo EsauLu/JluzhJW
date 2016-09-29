@@ -142,4 +142,63 @@ public class CourseTable {
 		this.simpleInfo = simpleInfo;
 	}
 	
+	public String getJson() {
+		StringBuffer sb=new StringBuffer();	
+		sb.append("{");
+		for(Course c:courses){
+			sb.append("\n\t{");
+			sb.append("\n\t\t\"name\":\""+c.getName()+"\"");
+			sb.append("\n\t\t\"classRoom\":\""+c.getClassRoom()+"\"");
+			sb.append("\n\t\t\"teacher\":\""+c.getTeacher()+"\"");
+			sb.append("\n\t\t\"classTime\":\""+c.getClassTime()+"\"");
+			sb.append("\n\t\t\"weekNum\":\""+c.getWeekNum()+"\"");
+			sb.append("\n\t\t\"startWeek\":\""+c.getStartWeek()+"\"");
+			sb.append("\n\t\t\"endWeek\":\""+c.getEndWeek()+"\"");
+			sb.append("\n\t\t\"weekState\":\""+c.getWeekState()+"\"");
+			sb.append("\n\t\t\"number\":\""+c.getNumber()+"\"");
+			sb.append("\n\t\t\"day\":\""+c.getDay()+"\"");					
+			sb.append("\n\t}\n");
+		}
+		sb.append("}");		
+		return sb.toString();
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

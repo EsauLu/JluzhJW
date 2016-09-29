@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -85,8 +86,10 @@ public class MainFream extends JFrame {
 	}
 	
 	private void initUI(){
+		Color color=new Color(204, 246, 255);
 
 		JPanel top_panel=new JPanel(new GridLayout());
+//		top_panel.setBackground(color);
 		
 		JPanel top_left_panel=new JPanel(new FlowLayout(FlowLayout.LEFT,10,20));
 		top_left_panel.add(m_course_table_btn);
@@ -94,6 +97,7 @@ public class MainFream extends JFrame {
 		top_left_panel.add(m_personal_info_btn);
 		
 		JPanel top_right_panel=new JPanel(new FlowLayout(FlowLayout.RIGHT,20,20));
+//		top_left_panel.setBackground(color);
 		top_right_panel.add(m_welcome_label);
 
 		top_panel.add(top_left_panel,BorderLayout.WEST);
@@ -101,26 +105,30 @@ public class MainFream extends JFrame {
 		
 		this.add(top_panel,BorderLayout.NORTH);
 		
-		JPanel content_panel=new JPanel(new BorderLayout(0,20));
+		JPanel content_panel=new JPanel(new BorderLayout(0,1));
 		JPanel info_panel=new JPanel(new BorderLayout());
 		
 		JPanel info_left_panel=new JPanel(new FlowLayout(FlowLayout.LEFT,10,0));		
 		JPanel tem=new JPanel();
+		tem.setBackground(color);
 		tem.add(m_stu_id_lablel);
 		tem.add(m_stu_id_field);
 		info_left_panel.add(tem);
 		
 		tem=new JPanel();
+		tem.setBackground(color);
 		tem.add(m_stu_academe_lablel);
 		tem.add(m_stu_academe_field);
 		info_left_panel.add(tem);
 		
 		tem=new JPanel();
+		tem.setBackground(color);
 		tem.add(m_stu_major_lablel);
 		tem.add(m_stu_major_field);
 		info_left_panel.add(tem);
 		
 		tem=new JPanel();
+		tem.setBackground(color);
 		tem.add(m_stu_classid_lablel);
 		tem.add(m_stu_classid_field);
 		info_left_panel.add(tem);
@@ -133,7 +141,7 @@ public class MainFream extends JFrame {
 		info_right_panel.add(new JLabel("学期第"));
 		info_right_panel.add(m_week_comb);
 		info_right_panel.add(new JLabel("周"));
-		info_right_panel.setBorder(BorderFactory.createLineBorder(Color.WHITE,5));
+		info_right_panel.setBorder(BorderFactory.createLineBorder(color,5));
 		info_panel.add(info_right_panel,BorderLayout.EAST);			
 		
 		info_panel.setBorder(BorderFactory.createLineBorder(Color.gray));		
@@ -142,7 +150,11 @@ public class MainFream extends JFrame {
 		m_courses_table.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
 		content_panel.add(m_courses_table);
 		
-		content_panel.setBorder(BorderFactory.createLineBorder(Color.white, 20));
+		content_panel.setBorder(BorderFactory.createLineBorder(color, 20));
+		content_panel.setBackground(color);
+		info_panel.setBackground(color);
+		info_left_panel.setBackground(color);
+		info_right_panel.setBackground(color);
 		
 		this.add(content_panel, BorderLayout.CENTER);
 		
@@ -155,6 +167,7 @@ public class MainFream extends JFrame {
 		m_stu_major_lablel=new JLabel("专业:");
 		m_stu_classid_lablel=new JLabel("班级:");
 		m_welcome_label=new JLabel();
+		m_welcome_label.setFont(new Font("宋体", Font.PLAIN, 20));
 
 //		m_stu_name_field=new JTextField("卢一少",15);
 		m_stu_id_field=new JTextField();

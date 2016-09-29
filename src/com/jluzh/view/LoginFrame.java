@@ -24,6 +24,7 @@ import javax.swing.JTextField;
 
 import com.jluzh.control.Controller;
 import com.jluzh.jw.bean.User;
+import com.jluzh.jw.factor.BeanFactor;
 
 /**
  * 登陆窗口
@@ -196,10 +197,10 @@ public class LoginFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				User user=new User();
-				user.setName(m_account_field.getText());
-				user.setPasswd(m_passwd_field.getText());
-				user.setCheck(m_check_field.getText());	
+				String name=m_account_field.getText();
+				String passwd=m_passwd_field.getText();
+				String check=m_check_field.getText();
+				User user=BeanFactor.createUser(name, passwd, check);
 				m_check_field.setText("");
 				if(mController.login(user)){
 					LoginFrame.this.setVisible(false);

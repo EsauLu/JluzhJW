@@ -1,10 +1,10 @@
 package com.jluzh.jw.dao;
 
 import java.awt.Image;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,12 +15,11 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.methods.HttpTrace;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
-import com.jluzh.control.Controller;
 import com.jluzh.jw.bean.Course;
 import com.jluzh.jw.bean.CourseTable;
 import com.jluzh.jw.bean.PersonalInfo;
@@ -28,7 +27,6 @@ import com.jluzh.jw.bean.StuSimpleInfo;
 import com.jluzh.jw.bean.User;
 import com.jluzh.jw.constant.Constant;
 import com.jluzh.jw.tool.HtmlTools;
-import com.sun.jna.platform.win32.COM.TypeLibUtil.FindName;
 
 public class HttpService implements HttpDAO {
 	
@@ -184,30 +182,23 @@ public class HttpService implements HttpDAO {
 	}
 	
 	@Override
-	public Image getCheckImg() {
+	public byte[] getCheckImg() {
 		// TODO Auto-generated method stub
 		String url=Constant.CHECK_IMAGE_URL;
-		Image img=null;
 		HttpGet httpGet=new HttpGet(url);
-		InputStream in=null;
+		byte[] imgByte=null;
 		
 		try {
+			
 			CloseableHttpResponse response=mHttpClient.execute(httpGet);
-			in=response.getEntity().getContent();
-			img=ImageIO.read(in);
+			imgByte=EntityUtils.toByteArray(response.getEntity());
+			
 		} catch (Exception e) {
-			// TODO: handle exception
-		}finally{
-			try {
-				if(in!=null){
-					in.close();
-				}
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
-		}	
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		return img;
+		return imgByte;
 	}
 
 	@Override

@@ -1,6 +1,9 @@
 package com.jluzh.control;
 
 import java.awt.Image;
+import java.io.ByteArrayInputStream;
+
+import javax.imageio.ImageIO;
 
 import com.jluzh.jw.bean.Course;
 import com.jluzh.jw.bean.CourseTable;
@@ -70,7 +73,14 @@ public class Controller {
      * @return 返回验证码图片对象
      */
     public Image getCheckImg() {
-    	return mHttpDAO.getCheckImg();
+    	ByteArrayInputStream bis=new ByteArrayInputStream(mHttpDAO.getCheckImg());
+    	Image img =null;
+    	try {
+    		 img=ImageIO.read(bis);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    	return img;
     }
 	   
     /**
@@ -91,7 +101,6 @@ public class Controller {
 	 */
 	public void qureyCourseTable(String xnd,String xqd){
 		CourseTable ct=mHttpDAO.getCourseTable(xnd,xqd);
-
 		mMainFream.showCourseTable(ct);
 	}
 	   

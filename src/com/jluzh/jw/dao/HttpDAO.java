@@ -41,7 +41,7 @@ public interface HttpDAO {
 	 * 获取验证码
 	 * @return 验证码图片
 	 */
-	public Image getCheckImg();
+	public byte[] getCheckImg();
 	
 	/**
 	 * 登陆

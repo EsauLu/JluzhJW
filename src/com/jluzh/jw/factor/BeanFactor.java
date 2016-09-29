@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import com.jluzh.jw.bean.Course;
 import com.jluzh.jw.bean.StuSimpleInfo;
+import com.jluzh.jw.bean.User;
 
 /**
  * Bean工厂
@@ -73,6 +74,14 @@ public class BeanFactor {
 		c.setSchoolTime(x, y);
 		
 		return c;
+	}
+	
+	public static User createUser(String name,String passwd,String check){
+		User user=new User();
+		user.setName(name);
+		user.setPasswd(passwd);
+		user.setCheck(check);
+		return user;
 	}
 	
 	public static StuSimpleInfo createStuSimpleInfo(String[] info){
