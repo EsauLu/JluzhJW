@@ -1,4 +1,4 @@
-package com.jluzh.jw.blean;
+package com.jluzh.jw.bean;
 
 /**
  * 用户信息

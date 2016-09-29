@@ -2,9 +2,9 @@ package com.jluzh.control;
 
 import java.awt.Image;
 
-import com.jluzh.jw.blean.Course;
-import com.jluzh.jw.blean.CourseTable;
-import com.jluzh.jw.blean.User;
+import com.jluzh.jw.bean.Course;
+import com.jluzh.jw.bean.CourseTable;
+import com.jluzh.jw.bean.User;
 import com.jluzh.jw.dao.HttpDAO;
 import com.jluzh.jw.dao.HttpService;
 import com.jluzh.view.LoginFrame;
@@ -39,7 +39,7 @@ public class Controller {
       // TODO: implement
 	   
     	init();
-    	mHttpDAO.init();
+//    	mHttpDAO.init();
     	mLoginFrame.setVisible(true);
     	mLoginFrame.showCheckImg();
 	   
@@ -77,9 +77,9 @@ public class Controller {
      * 打开主界面
      */
 	public void openMainFream() {		   
+
 		mMainFream.setVisible(true);
 		CourseTable ct=mHttpDAO.getCourseTable(null,null);	
-//		ct=mHttpDAO.getCourseTable("2016-2017","1");	
 		mMainFream.showCourseTable(ct);
 		mMainFream.setXndOrXqdComb(ct.getXnd(), ct.getXqd());
 	}
@@ -91,7 +91,7 @@ public class Controller {
 	 */
 	public void qureyCourseTable(String xnd,String xqd){
 		CourseTable ct=mHttpDAO.getCourseTable(xnd,xqd);
-//		System.out.println(mHttpDAO.getCourseTableAsJson("2014-2015", "1"));
+
 		mMainFream.showCourseTable(ct);
 	}
 	   

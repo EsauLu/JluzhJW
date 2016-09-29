@@ -12,8 +12,8 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.jluzh.jw.blean.Course;
-import com.jluzh.jw.blean.CourseTable;
+import com.jluzh.jw.bean.Course;
+import com.jluzh.jw.bean.CourseTable;
 
 public class CourseTablePanel extends JPanel{
 	
@@ -90,7 +90,6 @@ public class CourseTablePanel extends JPanel{
 				p.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.gray));
 				m_courses_table[i][j]=new JLabel("+",JLabel.CENTER);
 				p.add(m_courses_table[i][j]);
-				p.setBackground(new Color(127, 209, 161));
 				tablePanel.add(p);
 //				tablePanel.add(m_courses_table[i][j]);
 			}
@@ -106,26 +105,49 @@ public class CourseTablePanel extends JPanel{
 		
 	}
 	
+	/**
+	 * 设置课表
+	 * @param list 课程列表
+	 * @param n 周数
+	 */
 	public void setCourseTable(ArrayList<Course> list,int n){
 		m_course_list=list;
 		m_week_num=n;
 		updateCourseTable(m_week_num);
 	}
 	
+	/**
+	 * 更新课表
+	 * @param n 当前周
+	 */
 	public void updateCourseTable(int n){
 		for(int i=0;i<rowNum/2;i++){
 			for(int j=0;j<columNum;j++){
 				m_courses_table[i][j].setText("+");
+//				m_courses_table[i][j].getParent().setBackground(new Color(127, 209, 161));
+				m_courses_table[i][j].getParent().setBackground(new Color(225, 225, 225));
 			}
 		}
+
 		for(Course c:m_course_list){
-			String weekNum=c.getWeekNum();
-			if(!judeWeek(weekNum, n)){
+
+			if(n<c.getStartWeek()||n>c.getEndWeek()){
+//				m_courses_table[i][j].getParent().setBackground(new Color(250,250,250));
 				continue;
 			}
+			int weekState=c.getWeekState();
+			if(weekState!=Course.ALL_WEEK){
+				if(n%2!=0&&weekState==Course.DOUBLE_WEEK){
+					continue;
+				}				
+				if(n%2==0&&weekState==Course.SINGLE_WEEK){
+					continue;
+				}
+			}			
+//			m_courses_table[i][j].getParent().setBackground(new Color(127, 209, 170));
 
-			int x=c.getX();
-			int y=c.getY()%7;
+			int x=c.getNumber();
+			int y=c.getDay()%7;
 			m_courses_table[x/2][y].setText(""
 					+ "<html>"
 					+ "<p>"+c.getName()+"</p>"
@@ -133,42 +155,6 @@ public class CourseTablePanel extends JPanel{
 					+ "<p>"+c.getTeacher()+"</p>"
 					+ "</html>");
 		}
-	}
-	
-	private boolean judeWeek(String week,int n) {
-		// TODO Auto-generated method stub
-
-		String pattern="(.*)(\\d+)-(\\d+)(.*)";
-		Pattern p=Pattern.compile(pattern);
-		Matcher m=p.matcher(week);
-		String res="";
-		if(m.find()){
-			res=m.group(2);
-			int begin=Integer.parseInt(res);
-			
-			res=m.group(3);
-			int end=Integer.parseInt(res);
-			
-			if(n<begin||n>end){
-				return false;
-			}
-			
-			res=m.group(4);
-						
-			if(res.contains("单周")){
-				if(n%2==0){
-					return false;
-				}
-			}
-			
-			if(res.contains("双周")){
-				if(n%2!=0){
-					return false;
-				}
-			}
-
-		}
-		return true;
 	}
 	
 }

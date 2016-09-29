@@ -4,9 +4,9 @@ import java.awt.Image;
 
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 
-import com.jluzh.jw.blean.CourseTable;
-import com.jluzh.jw.blean.PersonalInfo;
-import com.jluzh.jw.blean.User;
+import com.jluzh.jw.bean.CourseTable;
+import com.jluzh.jw.bean.PersonalInfo;
+import com.jluzh.jw.bean.User;
 
 /**
  * 获取数据的接口

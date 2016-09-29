@@ -21,10 +21,11 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.jluzh.control.Controller;
-import com.jluzh.jw.blean.CourseTable;
-import com.jluzh.jw.blean.Course;
-import com.jluzh.jw.blean.PersonalInfo;
-import com.jluzh.jw.blean.User;
+import com.jluzh.jw.bean.Course;
+import com.jluzh.jw.bean.CourseTable;
+import com.jluzh.jw.bean.PersonalInfo;
+import com.jluzh.jw.bean.StuSimpleInfo;
+import com.jluzh.jw.bean.User;
 import com.jluzh.jw.constant.Constant;
 import com.jluzh.jw.tool.HtmlTools;
 import com.sun.jna.platform.win32.COM.TypeLibUtil.FindName;
@@ -78,6 +79,7 @@ public class HttpService implements HttpDAO {
 		// TODO Auto-generated constructor stub
 		this.mErrorMessege="no error";
 		mHttpClient=HttpClients.createDefault();
+		init();
 	}
 	
 	@Override
@@ -278,7 +280,7 @@ public class HttpService implements HttpDAO {
 			String html=courseHtml.toString();	//响应HTML文档	
 			mViewState=HtmlTools.findViewState(html);//记录__VIEWSTATE
 			
-//			System.out.println(html);//==============================================================
+			StuSimpleInfo stuInfo=HtmlTools.getStuInfo(html);
 			String[] xnds=HtmlTools.getXnd(html);	//在响应内容中获取学年度选项列表	
 			String[] xqds=HtmlTools.getXqd(html);	//在响应内容中获取学期选项列表	
 			ArrayList<Course> courses=HtmlTools.getCourseList(html);	//在响应内容中获取课表
@@ -293,6 +295,7 @@ public class HttpService implements HttpDAO {
 			couresTable.setCurrXnd(xnd);
 			couresTable.setCurrXqd(xqd);				
 			couresTable.setCourses(courses);
+			couresTable.setSimpleInfo(stuInfo);
 			
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
@@ -317,16 +320,14 @@ public class HttpService implements HttpDAO {
 			sb.append("\n\t\t\"teacher\":\""+c.getTeacher()+"\"");
 			sb.append("\n\t\t\"classTime\":\""+c.getClassTime()+"\"");
 			sb.append("\n\t\t\"weekNum\":\""+c.getWeekNum()+"\"");
-			sb.append("\n\t\t\"X\":\""+c.getX()+"\"");
-			sb.append("\n\t\t\"Y\":\""+c.getY()+"\"");					
+			sb.append("\n\t\t\"startWeek\":\""+c.getStartWeek()+"\"");
+			sb.append("\n\t\t\"endWeek\":\""+c.getEndWeek()+"\"");
+			sb.append("\n\t\t\"weekState\":\""+c.getWeekState()+"\"");
+			sb.append("\n\t\t\"number\":\""+c.getNumber()+"\"");
+			sb.append("\n\t\t\"day\":\""+c.getDay()+"\"");					
 			sb.append("\n\t}\n");
 		}
 		sb.append("}");
-		
-
-//		System.out.println("===================================");
-//		System.out.println(sb.toString());//==============================================================
-//		System.out.println("===================================");
 		
 		return sb.toString();
 	}

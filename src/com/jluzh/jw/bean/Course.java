@@ -1,4 +1,7 @@
-package com.jluzh.jw.blean;
+package com.jluzh.jw.bean;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * 课程类
@@ -6,6 +9,21 @@ package com.jluzh.jw.blean;
  *
  */
 public class Course {
+	
+	/**
+	 * 全部周数
+	 */
+	public static final int ALL_WEEK=0;
+	
+	/**
+	 * 单周
+	 */
+	public static final int SINGLE_WEEK=1;
+	
+	/**
+	 * 双周
+	 */
+	public static final int DOUBLE_WEEK=2;
 	
 	/**
 	 * 姓名
@@ -33,6 +51,22 @@ public class Course {
 	private String weekNum;
 	
 	/**
+	 * 课程开始周
+	 */
+	private int startWeek;
+	
+
+	/**
+	 * 课程结束周
+	 */
+	private int endWeek;
+	
+	/**
+	 * 记录该课程是双周还是单周上课
+	 */
+	private int weekState;
+	
+	/**
 	 * 课程在课表中的位置
 	 */
 	private SchoolTime schoolTime;
@@ -43,28 +77,34 @@ public class Course {
 	 *
 	 */
 	class SchoolTime{
-		private int x;
-		private int y;
+		/**
+		 * 第几节课
+		 */
+		private int number;
+		/**
+		 * 星期几
+		 */
+		private int day;
 		public SchoolTime () {
 			// TODO Auto-generated constructor stub
 		}
 		public SchoolTime (int x,int y) {
 			// TODO Auto-generated constructor stub
-			this.x=x;
-			this.y=y;
+			this.number=x;
+			this.day=y;
 		}
 		
-		public int getX() {
-			return x;
+		public int getNumber() {
+			return number;
 		}
-		public void setX(int x) {
-			this.x = x;
+		public void setNumber(int x) {
+			this.number = x;
 		}
-		public int getY() {
-			return y;
+		public int getDay() {
+			return day;
 		}
-		public void setY(int y) {
-			this.y = y;
+		public void setDay(int y) {
+			this.day = y;
 		}
 		
 	}
@@ -183,19 +223,67 @@ public class Course {
 	}
 	
 	/**
-	 * 获取节数 
-	 * @return 返回节数
+	 * 获取第几节课上课 
+	 * @return 返回值表示第几节课上课
 	 */
-	public int getX() {
-		return schoolTime.getX();
+	public int getNumber() {
+		return schoolTime.getNumber();
 	}
 	
 	/**
-	 * 获取星期几
+	 * 获取星期几上课
 	 * @return 返回星期几
 	 */
-	public int getY() {
-		return schoolTime.getY();
+	public int getDay() {
+		return schoolTime.getDay();
+	}	
+
+	/**
+	 * 获取课程开始周
+	 * @return 课程开始周
+	 */
+	public int getStartWeek() {
+		return startWeek;
+	}
+
+	/**
+	 * 设置课程开始周
+	 * @param startWeek 课程开始周
+	 */
+	public void setStartWeek(int startWeek) {
+		this.startWeek = startWeek;
+	}
+
+	/**
+	 * 获取课程结束周
+	 * @return 课程结束周
+	 */
+	public int getEndWeek() {
+		return endWeek;
+	}
+
+	/**
+	 * 设置课程结束周
+	 * @param startWeek 课程结束周
+	 */
+	public void setEndWeek(int endWeek) {
+		this.endWeek = endWeek;
+	}
+	
+	/**
+	 * 获取课程上课是全部周、双周还是单周
+	 * @return 返回值为ALL_WEEK、SINGLE_WEEK或DOUBLE_WEEK
+	 */
+	public int getWeekState() {
+		return weekState;
+	}
+	
+	/**
+	 * 设置课程的上课周
+	 * @param weekState 可取值为ALL_WEEK、SINGLE_WEEK或DOUBLE_WEEK
+	 */
+	public void setWeekState(int weekState) {
+		this.weekState = weekState;
 	}
 
 }

@@ -23,7 +23,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import com.jluzh.control.Controller;
-import com.jluzh.jw.blean.User;
+import com.jluzh.jw.bean.User;
 
 /**
  * 登陆窗口

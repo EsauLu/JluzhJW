@@ -3,8 +3,10 @@ package com.jluzh.jw.tool;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.jluzh.jw.blean.Course;
-import com.jluzh.jw.factor.BleanFactor;
+
+import com.jluzh.jw.bean.Course;
+import com.jluzh.jw.bean.StuSimpleInfo;
+import com.jluzh.jw.factor.BeanFactor;
 
 /**
  * HTML工具类，主要用于提取HTML文档中的信息
@@ -128,6 +130,38 @@ public class HtmlTools {
 	}
 	
 	/**
+	 * 获取学生简要信息
+	 * @param html HTML文档
+	 * @return 返回学生简要信息数组
+	 */
+	public static StuSimpleInfo getStuInfo(String html){
+		String[] info=null;
+		//(<span id="([\\s\\S]+?)">([\\s\\S]+?)</span>\\|)?<span id="(.+)">(.+?)</span>
+		String res="";
+		String pattern="<TR class=\"trbg1\">"
+				+ "([\\s\\S]*?)<TD>([\\s\\S]*?)"
+				+ "<span id=\"Labe(.+?)\">([\\s\\S]+?)</span>(\\|([\\s\\S]*?)<span id=\"Labe(.+?)\">([\\s\\S]+?)</span>)*";		
+		Pattern p=Pattern.compile(pattern);
+		Matcher m=p.matcher(html);		
+		if(m.find()){
+			res=m.group(0);
+			info=res.split("\\|");
+			pattern="<span id=\"Labe(.+?)\">([\\s\\S]+?)：([\\s\\S]+?)</span>";
+			p=Pattern.compile(pattern);
+			for(int i=0;i<info.length;i++){
+				m=p.matcher(info[i]);
+				if(m.find()){
+					info[i]=m.group(3);
+				}else{
+					info[i]="";
+				}
+			}
+		}
+		
+		return BeanFactor.createStuSimpleInfo(info);
+	}
+	
+	/**
 	 * 在HTML文档中提取课表
 	 * @param html HTML文档
 	 * @return 返回课表
@@ -166,7 +200,7 @@ public class HtmlTools {
 					}
 					tem[t++]=item;
 					if(t==4){
-						Course course=BleanFactor.createCourse(tem, i-1, x);
+						Course course=BeanFactor.createCourse(tem, i-1, x);
 						courses.add(course);
 					}
 				}

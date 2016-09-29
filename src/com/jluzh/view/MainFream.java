@@ -26,8 +26,9 @@ import javax.swing.JTextField;
 import javax.swing.border.Border;
 
 import com.jluzh.control.Controller;
-import com.jluzh.jw.blean.Course;
-import com.jluzh.jw.blean.CourseTable;
+import com.jluzh.jw.bean.Course;
+import com.jluzh.jw.bean.CourseTable;
+import com.jluzh.jw.bean.StuSimpleInfo;
 
 public class MainFream extends JFrame {
 
@@ -74,7 +75,7 @@ public class MainFream extends JFrame {
 		
 		Toolkit kit=Toolkit.getDefaultToolkit();
 		Dimension srceen=kit.getScreenSize();
-		Dimension size=new Dimension(getPreferredSize().width+200, (int)(getPreferredSize().height*1.5));
+		Dimension size=new Dimension(getPreferredSize().width*2, (int)(getPreferredSize().height*1.5));
 		
 		this.setTitle("正方教务系统");
 		this.setSize(size);
@@ -153,13 +154,13 @@ public class MainFream extends JFrame {
 		m_stu_academe_lablel=new JLabel("学院:");
 		m_stu_major_lablel=new JLabel("专业:");
 		m_stu_classid_lablel=new JLabel("班级:");
-		m_welcome_label=new JLabel("欢迎您！卢一少");
+		m_welcome_label=new JLabel();
 
 //		m_stu_name_field=new JTextField("卢一少",15);
-		m_stu_id_field=new JTextField("04140814",10);
-		m_stu_academe_field=new JTextField("计算机科学与技术系",20);
-		m_stu_major_field=new JTextField("软件工程",10);
-		m_stu_classid_field=new JTextField("8班",5);
+		m_stu_id_field=new JTextField();
+		m_stu_academe_field=new JTextField();
+		m_stu_major_field=new JTextField();
+		m_stu_classid_field=new JTextField();
 		
 //		m_stu_name_field.setEditable(false);
 		m_stu_id_field.setEditable(false);
@@ -237,8 +238,16 @@ public class MainFream extends JFrame {
 	 */
 	public void showCourseTable(CourseTable courseTable) {
 		try {
+			
+			StuSimpleInfo stu=courseTable.getSimpleInfo();
+			m_welcome_label.setText("欢迎您！"+stu.getName());
+			m_stu_id_field.setText(stu.getId());
+			m_stu_academe_field.setText(stu.getDepartment());
+			m_stu_major_field.setText(stu.getMajor());
+			m_stu_classid_field.setText(stu.getClassNum());
 			int n=Integer.parseInt((String)m_week_comb.getSelectedItem());
 			m_courses_table.setCourseTable(courseTable.getCourses(), n);
+			
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

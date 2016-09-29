@@ -1,4 +1,4 @@
-package com.jluzh.jw.blean;
+package com.jluzh.jw.bean;
 
 import java.util.ArrayList;
 
@@ -28,6 +28,11 @@ public class CourseTable {
 	 * 当前学期
 	 */
 	private String currXqd;
+	
+	/**
+	 * 学生简要信息
+	 */
+	private StuSimpleInfo simpleInfo;
 	
 	/**
 	 * 课程列表
@@ -121,6 +126,20 @@ public class CourseTable {
 		this.courses = courses;
 	}
 	
+	/**
+	 * 获取学生简要信息
+	 * @return 学生简要信息
+	 */
+	public StuSimpleInfo getSimpleInfo() {
+		return simpleInfo;
+	}
 	
+	/**
+	 * 设置学生简要信息
+	 * @param simpleInfo 学生简要信息
+	 */
+	public void setSimpleInfo(StuSimpleInfo simpleInfo) {
+		this.simpleInfo = simpleInfo;
+	}
 	
 }
