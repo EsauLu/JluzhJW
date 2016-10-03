@@ -2,14 +2,22 @@ package com.jluzh.control;
 
 import java.awt.Image;
 import java.io.ByteArrayInputStream;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
+
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpTrace;
+import org.apache.http.message.BasicNameValuePair;
 
 import com.jluzh.jw.bean.Course;
 import com.jluzh.jw.bean.CourseTable;
 import com.jluzh.jw.bean.User;
+import com.jluzh.jw.constant.Constant;
 import com.jluzh.jw.dao.HttpDAO;
 import com.jluzh.jw.dao.HttpService;
+import com.jluzh.jw.tool.HtmlTools;
 import com.jluzh.view.LoginFrame;
 import com.jluzh.view.MainFream;
 
@@ -73,13 +81,17 @@ public class Controller {
      * @return 返回验证码图片对象
      */
     public Image getCheckImg() {
-    	ByteArrayInputStream bis=new ByteArrayInputStream(mHttpDAO.getCheckImg());
     	Image img =null;
-    	try {
-    		 img=ImageIO.read(bis);
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
+    	while(true){
+        	try {
+            	ByteArrayInputStream bis=new ByteArrayInputStream(mHttpDAO.getCheckImg());        	
+        		img=ImageIO.read(bis);
+        		break;
+    		} catch (Exception e) {
+    			// TODO: handle exception
+    			continue;
+    		}
+    	}
     	return img;
     }
 	   

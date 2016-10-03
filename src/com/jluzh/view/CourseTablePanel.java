@@ -5,18 +5,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.jluzh.jw.bean.Course;
-import com.jluzh.jw.bean.CourseTable;
 
 public class CourseTablePanel extends JPanel{
 	
@@ -33,7 +27,7 @@ public class CourseTablePanel extends JPanel{
 	private Color bgColor=new Color(204, 246, 255);
 	
 	private ArrayList<Course> m_course_list;
-	private HashMap<String , Course> m_coourse_map;
+//	private HashMap<String , Course> m_coourse_map;
 	
 	private String[] weekStr={"周日","周一","周二","周三","周四","周五","周六"};
 	
@@ -120,15 +114,7 @@ public class CourseTablePanel extends JPanel{
 	 */
 	public void setCourseTable(ArrayList<Course> list,int n){
 		m_course_list=list;
-		m_coourse_map=new HashMap<String, Course>();
 		m_week_num=n;
-		for(Course c:list){			
-			int x=c.getNumber();
-			int y=c.getDay()%7;
-			m_coourse_map.put(String.valueOf(x/2)+","+String.valueOf(y), c);
-//			System.out.println(String.valueOf(x/2)+","+String.valueOf(y)+" ===> "+c.getName());
-//			m_coourse_map.
-		}
 		updateCourseTable(m_week_num);
 	}
 	
@@ -153,18 +139,13 @@ public class CourseTablePanel extends JPanel{
 			
 			int x=c.getNumber();
 			int y=c.getDay()%7;
-			
-//			if(n<c.getStartWeek()||n>c.getEndWeek()){
-//				m_courses_table[x/2][y].getParent().setBackground(new Color(240, 240, 240));
-//				continue;
-//			}
+
 			String text = "<html>"
 					+ "<p>"+c.getName()+"</p>"
 					+ "<p>"+c.getClassRoom()+"</p>"
 					+ "<p>"+c.getTeacher()+"</p>"
 					+ "</html>";
 
-//			m_courses_table[x/2][y].setForeground(Color.black);
 			if(m_courses_table[x/2][y].getText().equals("+")){
 				m_courses_table[x/2][y].setText(text);
 			}else{

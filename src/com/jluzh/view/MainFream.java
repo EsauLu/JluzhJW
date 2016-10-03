@@ -7,34 +7,30 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 import com.jluzh.control.Controller;
-import com.jluzh.jw.bean.Course;
 import com.jluzh.jw.bean.CourseTable;
 import com.jluzh.jw.bean.StuSimpleInfo;
 
 public class MainFream extends JFrame {
 
 
-//	private JLabel m_stu_name_lablel;
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//	private JLabel m_stu_name_lablel;
 	private JLabel m_stu_id_lablel;
 	private JLabel m_stu_academe_lablel;
 	private JLabel m_stu_major_lablel;

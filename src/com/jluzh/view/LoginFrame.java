@@ -166,8 +166,8 @@ public class LoginFrame extends JFrame {
 		m_passwd_lable=new JLabel("密码：");
 		m_check_lable=new JLabel("验证码：");
 
-		m_account_field=new JTextField("04140814",20);
-		m_passwd_field=new JPasswordField("luyishao19931223",20);
+		m_account_field=new JTextField("",20);
+		m_passwd_field=new JPasswordField("",20);
 		m_check_field=new JTextField(20);
 		
 		BufferedImage bim=new BufferedImage(72, 27, BufferedImage.TYPE_INT_RGB);

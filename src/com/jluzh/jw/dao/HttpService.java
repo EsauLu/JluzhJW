@@ -184,6 +184,7 @@ public class HttpService implements HttpDAO {
 	@Override
 	public byte[] getCheckImg() {
 		// TODO Auto-generated method stub
+		
 		String url=Constant.CHECK_IMAGE_URL;
 		HttpGet httpGet=new HttpGet(url);
 		byte[] imgByte=null;
@@ -366,6 +367,11 @@ public class HttpService implements HttpDAO {
 			}
 		}
 		
+	}
+	
+	
+	public User getmUser() {
+		return mUser;
 	}
 	
 }

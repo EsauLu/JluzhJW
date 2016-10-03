@@ -32,6 +32,7 @@ public class Constant {
 	 */
 	public static final String RADIO_BUTTON_LIST="学生";
 	
+	
 	/**
 	 * 基础地址
 	 */
@@ -40,16 +41,16 @@ public class Constant {
 	/**
 	 * 验证码URL
 	 */
-	public static final String CHECK_IMAGE_URL="http://jw.jluzh.com/CheckCode.aspx";
+	public static final String CHECK_IMAGE_URL=BASE_URL+"/CheckCode.aspx";
 	
 	/**
 	 * 登陆URL
 	 */
-	public static final String LOGIN_URL="http://jw.jluzh.com/default2.aspx";
+	public static final String LOGIN_URL=BASE_URL+"/default2.aspx";
 	
 	/**
 	 * 登陆后主页面URL
 	 */
-	public static final String STUDENT_URL="http://jw.jluzh.com/xs_main.aspx?xh=";
+	public static final String STUDENT_URL=BASE_URL+"/xs_main.aspx?xh=";
 	
 }
